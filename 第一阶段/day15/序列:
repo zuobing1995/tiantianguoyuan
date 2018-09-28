@@ -1,0 +1,4 @@
+序列:
+  str(不可变)
+  list(可变)      ----> tuple(不可变)
+  bytearray(可变) ----> bytes(不可变)

@@ -1,0 +1,260 @@
+day18回顾
+  类变量(类属性)
+    绑定属性类的数据
+  类方法(@classmethod)
+    
+名词:
+  类: (class 语句来创建的)
+    类变量(类属性)
+    类方法
+  对象(实例)
+    实例变量(实例属性)
+    实例方法
+
+类的预值属性 __doc__ 绑定文档字符串
+
+__slots__列表
+  让实例有固定的属性
+
+静态方法:  @staticmethod
+  继承 (派生)
+  单继承
+    语法:
+      class B(A):
+          pass
+
+覆盖
+  优先使用子类的方法
+
+显式调用被覆盖的方法:
+   super(类, 类的实例)
+   super()  # <<只能用在方法内部
+
+class YYY(XXX):
+    def __init__(self):
+        super().__init__()  # 显试调用父类的方初始化方法
+
+
+
+day19笔记:
+
+用于类的函数
+  issubclass(cls, class_or_tuple) 判断一个类是否继承自其它的类,如果此类cls是class或tuple中一个派生子类则返回True,否则返回False
+
+  示例:
+    class A:
+        pass
+    class B(A):
+        pass
+    class C(B):
+        pass
+    issubclass(C, B)  # True
+    issubclass(B, A)  # True
+    issublcass(A, C)  # False
+
+
+
+
+
+封装 enclosure
+  封装是指隐藏类的实现细节,让使用者不关心这些细节
+  封装的目的是让使用者通过尽可能少的方法(或属性)操作对象
+
+私有属性和方法
+  python类中,以双下划线('__') 开头,不以双下划线结尾的标识符为私有成员,私有成员只能使用该类的方法来进行访问和修改
+    1. 以__开头的属性为私有属性
+    2. 以__开头的方法为私有方法
+示例见:
+  enclosure.py
+
+  注:
+    python 的封装是假的封装(模拟的封装)
+
+
+
+多态 polymorphic
+  字面意思: '多种状态'
+  多态是指在有继承/派生关系的类中,调用基类对象的方法,实际能调用子类的覆盖方法的现象叫多态
+
+
+  状态:
+    静态(编译时状态)
+    动态(运行时状态)
+  说明:
+    1. 多态调用的方法与对象相关,不写类型相关
+    2. Python全部对象都只有"运行时状态(动态)", 没有"C++语言"里的编译时状态(静态)
+
+  示例见:
+    poly.py
+
+
+
+
+面向对象编程语言的特征:
+  继承
+  封装
+  多态
+
+
+多继承 multiple inheritance
+  多继承是指一个子类继承自两个或两个以上的基类
+
+  语法:
+    class 类名(基类名, 基类名2, .....):
+        pass
+  说明:
+    一个子类同时继承自多个父类,父类中的方法可以同时被继承下来
+    如果两个父类中有同名的方法,而在子类中又没有覆盖此方法时,调用结果难以确定
+  示例见:
+    multiple_inherit.py
+
+多继承的问题(缺陷)
+  标识符冲空问题
+    (要谨慎使用多继承)
+
+  示例见:
+    multiple_inherit2.py
+
+多继承的 MRO(Method Resolution Order) 问题
+  python3的类的__mro__属性
+    作用:  用来记录类的方法查找顺序
+
+   示例见:
+     mro.py
+
+super() 函数就是根据__mro__来调用上层的方法
+
+
+练习:
+    写一个农民类Peasant 有方法:
+        def farm(self, plant):
+           ....
+    写一个工人类Worker 
+      有方法如下:
+        def work(self, that):
+           ...
+    创建一个农民工为MigrantWorker,让此类的对象拥有上面两个类的全部方法
+
+    person = MigrantWorker()
+    person.farm('水稻')  # 正在种植 水稻
+    person.work('汽车')  # 正在制造 汽车
+
+    查看各个类的__mro__属性
+
+
+
+函数重写 overwrite
+  什么是函数重写
+    在自定义的类内添加相应的方法,让自定义的类创建的实例能够使用内建函数进行操作
+  
+对象转字符串函数
+  repr(x) 返回一个能表示python对象的表达式字符串,通常
+     eval(repr(obj)) == obj
+  str(x)  通过给定的对象返回一个字符串(这个字符串通常供人阅读)
+
+  示例:
+    s = "I'm a teacher"
+    print(str(s))  # I'm a teacher
+    print(repr(s))  # "I'm a teacher"
+
+对象转字符串函数的重写方法:
+  repr() 函数的重写方法:
+      def __repr__(self):
+          return 字符串
+
+  str() 函数的重写方法:
+      def __str__(self):
+          return 字符串
+
+  str(obj) 函数调用方法说明:
+    1. str(obj) 函数先查找obj.__str__(方法), 调用此方法并返回结果
+    2. 如果 obj.__str__() 方法不存在.则调用obj.__repr__方法并返回结果
+    3. 如果 obj.__repr__方法不存在,则调用 object类的__repr__实例方法显示<__main__.XXXX object at 0xXXXXXXX> 格式的字符串
+  示例见:
+    mynumber.py
+
+
+
+内建函数重写
+  方法名                         函数名
+ def __abs__(self):         abs(obj)  函数调用
+ def __len__(self):         len(obj)  函数调用
+ def __reversed__(self):    reversed(obj)  函数调用
+ def __round__(self):       round(obj)  函数调用
+
+示例见:
+  len_overwrite.py
+
+数值转换函数的重写:
+  def __complex__(self):     complex(obj) 函数调用
+  def __int__(self):        int(obj)
+  def __float__(self):      float(obj) 
+  def __bool__(self):       bool(obj)
+  示例见:
+    mynumber3.py
+
+布尔测试函数的重写
+  格式:
+    def __bool__(self):
+        ...
+  作用:
+    用于bool(obj) 函数取值
+    用于if语句真值表达式中
+    用于while语句的真值表达式中
+  说明:
+    1. 当自定义类内有__bool__(self) 方法时,此方法的返回作为bool(x)的返回值
+    2. 当不存在__bool__(self) 方法时,返回__len__(self) 方法的返回值是否为非零来测式布尔值
+    3. 当不存在__len__(self) 方法时,则直接返回True
+
+对象的属性管理函数:
+  getattr(obj, name[,default])  从一个对象用字符串name得到对象的属性,getattr(x, 'y')等同于x.y;当属性不存在时,如果给定default参数则返回default,如果没有给出default 则触发一个AttributeError错误
+
+  hasattr(obj, name)  用给定的name字符串返回obj是否有此属性,此种做法可以避免在getattr(obj, name) 时引发错误
+
+  setattr(obj, name, value), 给对象obj的名为name的属性设置相应的值value, setattr(x, 'y', v) 等同于 x.y = v
+
+  delattr(obj, name) 删除对象obj中的name属性 del(x, 'y') 等同于 del x.y
+
+
+
+迭代器(高级)
+  什么是迭代器
+    由iter(x) 函数返回,可以通过next(it) 函数取值的对象就是迭代器
+
+  迭代器协议:
+    迭代器协议是指对象能够使用next()函数获取下一项数据,在没有下一项数据时触发一个StopIteration异常来终止迭代的约定
+
+  迭代器协议的实现方法:
+    def __next__(self):
+        ....
+    注:此方法需要实现迭代器协议
+
+  什么是可迭代对象
+    是指能用iter(obj) 函数返回迭代器的对象(实例)
+    可迭代对象内部要定义__iter__(self) 方法来返回迭代器对象
+
+  示例见:
+    myiterator.py
+
+
+练习:
+  1. 实现原学生信息管理系统的Student类的封装,让除Student实例方法外的函数或其它方法都不能访问姓名,年龄,成绩等属性
+
+  2. 写一个实现迭代器协议的类,让此类可以生成从b 开始的n个素数
+    class Prime:
+        def __init__(self, b, n):
+            ...
+        def __iter__(self):
+           ....
+
+    L = [x for x in Prime(10, 4)]
+    print(L)  # L = [11, 13, 17, 19]
+
+  3. 写一个类Fibonacci实现迭代器协议,此类的对象可以作为可迭代对象生成斐波那契数列
+         1 1 2 3 5 8 13 ....
+    class Fibonacci:
+        def __init__(self, n):
+            ...
+        ...
+    for x in Fibonacci(10):
+        print(x)  # 打印 1 1 2 3 5 8 ...
