@@ -1,0 +1,270 @@
+body,h1,h2,h3,h4,h5,h6,ul,ol,input{
+    margin:0;
+    padding:0;
+}
+body{
+    font:12px '微软雅黑',sans-serif;
+}
+
+#container{
+    width:990px;
+    margin:0 auto;
+
+}
+#nav{
+    background-color: #EEE;
+    /*overflow: hidden;*/
+    height:30px;
+    line-height:30px;
+
+}
+
+#rightNav{
+    float: right;
+    list-style-type:none;
+}
+a{
+    text-decoration:none;
+    color:#999;
+}
+a:hover{
+    color:red;
+}
+#aRightMargin{
+    margin-right:10px;
+}
+
+#nav li{
+    float: left;
+    margin:5px 0 0 0;
+    height:20px;
+    line-height:20px;
+    padding:0 10px 0 10px;
+    color:#999;
+}
+#nav #border-2{#
+    padding-right:0;
+}
+#nav #aMar{
+    padding-right:0; 
+}
+.border-1{
+    border-left:1px solid #9EB1CB;
+}
+#adress{
+    display: inline-block;
+    width:0;
+    height:0;
+    border:6px solid transparent;
+    border-top: 6px solid rgb(0,0,0);
+    position:relative;
+    top: 3px;
+}
+#nav>a{
+    margin:0 5px 0 5px;
+}
+#threeA{
+    color: #67A235;
+}
+
+
+
+/*2 banner*/
+
+#banner{
+    margin-top:10px; 
+}
+#banner>img{
+    width:990px;
+}
+/*解决换行带来的影响*/
+/*3 推荐*/
+#commend{
+    font-size: 0;
+    margin-bottom: 20px;
+}
+#commend img{
+    width: 240px;
+    margin-right:10px; 
+
+}
+
+/*4 main*/
+/*#main>span{
+    color: #999;
+    font-size: 20px;
+}
+#image{
+    font-size: 0;
+}
+#image>img{
+    width:240px;
+    height:200px;
+}
+*/
+#mainFbox{
+    width: 100%;
+    height: 33px; 
+    background-color: #F3F3F3;
+    line-height: 33px;
+
+}
+#mainFbox span{
+    color:#999;
+}
+#shang{
+    display: inline-block;
+    margin-left: 77px;
+}
+
+/*3. 内容*/
+
+.mainInfo{
+    margin-top:20px;
+    border-top:3px solid #999;
+    border-bottom: 2px solid #999;
+    color: #999;
+}
+.mainInfo img{
+    width: 80px;
+    height: 80px;
+    vertical-align: top;
+}
+.mainInfo1{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.mainInfo1 span{
+    display: inline-block;
+
+}
+.mainInfo1 .buyNumber{
+    width:40px;
+    height:20px;
+    border: 1px solid #999;
+    text-align: center;
+    line-height: 20px;
+}
+.mainInfo1 .reduceNumber,.addNumber{
+    border:1px solid #999;
+    width: 20px;
+    height: 20px;
+    margin:0;
+    padding: 0px;
+    background-color: rgb(255,255,255);
+}
+.mainInfo1 .reduceNumber{
+    margin-left: 56px;
+}
+.mainInfo1 .removeBuy{
+    border: none;
+    background-color: white;
+    color: #999;
+    margin-left: 80px;
+}
+
+.mainInfoBuy{
+    margin-top:20px;
+    border-top:3px solid #999;
+    border-bottom: 2px solid #999;
+    color: #999;
+}
+.mainInfoBuy1{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.mainInfoBuy1 img{
+    width: 80px;
+    height: 80px;
+    vertical-align: top;
+}
+.mainInfoBuy1 span{
+    display: inline-block;
+}
+.mainInfoBuy1 .mainInfoBox1{
+    margin-left:10px;
+}
+.mainInfoBuy1 .text2{
+    position:absolute;
+    left:130px;
+}
+.mainInfoBuy1 .text3{
+    position: absolute;
+    left:550px;
+}
+
+.revalue{
+    position: absolute;
+    right: 327px;
+    top: 1px;
+    border:1px solid #999;
+    width: 20px;
+    height: 20px;
+    margin:0;
+    padding: 0px;
+    background-color: rgb(255,255,255);
+}
+.advalue{
+    position: absolute;
+    right: 265px;
+    top: 1px;
+    border:1px solid #999;
+    width: 20px;
+    height: 20px;
+    margin:0;
+    padding: 0px;
+    background-color: rgb(255,255,255);
+}
+.buyNumber1{
+    width: 40px;
+    height:20px;
+    border: 1px solid #999;
+    position: absolute;
+    right:285px;
+    text-align: center;
+    line-height: 20px;
+}
+.mainInfoBuy1 .text4{
+    position: absolute;
+    right: 180px;
+}
+.xiaoji{
+    position: absolute;
+    right: 180px;
+}
+.removeBuy{
+    position: absolute;
+    right: 70px;
+}
+.mainInfoBuy1 .removeBuy1{
+    position: absolute;
+    right: 70px;
+    border: none;
+    background-color: white;
+    color: #999;
+    margin-left: 80px;
+}
+
+/*总计栏*/
+.counter{
+    line-height:50px;
+}
+span{
+    display: inline-block;
+    color: #999;
+}
+.counter .counterNumber{
+    color: red;
+    font-size:20px;
+}
+.counter input{
+    width: 74px;
+    height: 50px;
+    background-color: red;
+    border: none;
+    font-size: 20px;
+    float: right;
+    vertical-align: center;
+}
