@@ -33,7 +33,7 @@ Mako==1.0.3
 MarkupSafe==0.23
 matplotlib==1.5.1
 numexpr==2.4.3
-numpy==1.11.0
+numpy==1.21.0
 oauthlib==1.0.3
 onboard==1.2.0
 padme==1.1.1
